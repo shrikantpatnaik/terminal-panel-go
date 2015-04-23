@@ -7,9 +7,10 @@
 .cli-status {
   &.panel {
     margin-bottom: 0px;
+  }
+  .cli-panel-body {
     white-space: pre;
     word-wrap: break-word;
-    font-size: 14px;
     font-family: monospace;
   }
   .panel-heading {
@@ -18,6 +19,18 @@
     text-align: right;
     .btn {
       top: 0px;
+      height: auto;
+    }
+    .hide + .btn:not(:first-child):not(:last-child):not(.dropdown-toggle) {
+      border-top-left-radius: @component-border-radius;
+      border-bottom-left-radius: @component-border-radius;
+    }
+    .icon {
+      display: inline-block;
+      &::before {
+        position: relative;
+        top: 1px;
+      }
     }
   }
   .terminal {
