@@ -3,6 +3,7 @@
 // See https://github.com/atom/atom-dark-ui/blob/master/stylesheets/ui-variables.less
 // for a full listing of what's available.
 @import "ui-variables";
+@import "syntax-variables";
 
 .cli-status {
   &.panel {
@@ -10,6 +11,9 @@
   }
   .input {
     display: flex;
+    justify-content: flex-end;
+    padding: @component-padding 0;
+    min-height: @component-line-height;
   }
   atom-text-editor[mini] {
     flex: 4;
@@ -38,11 +42,13 @@
     overflow-y: scroll;
     bottom: @component-padding;
     border-radius: 0;
+    color: @syntax-text-color;
+    background: @syntax-background-color;
+    border: 1px solid @tool-panel-border-color;
 
     .file-info {
       width: 140px;
       display: inline-block;
-      // height: 2.5em;
       float: left;
     }
     .stat-program {
