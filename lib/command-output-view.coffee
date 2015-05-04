@@ -14,19 +14,18 @@ class CommandOutputView extends View
   @content: ->
     @div tabIndex: -1, class: 'panel cli-status panel-bottom', =>
       @div class: 'panel-heading', =>
-        @div class: 'btn-group', =>
+      @div class: 'cli-panel-body', =>
+        @pre class: "terminal", outlet: "cliOutput"
+      @div class: 'input', =>
+        @subview 'cmdEditor', new TextEditorView(mini: true, placeholderText: 'input your command here')
+        @div class: 'buttons', =>
           @button outlet: 'killBtn', click: 'kill', class: 'btn hide', =>
             # @span class: "icon icon-x"
             @span 'kill'
           @button click: 'destroy', class: 'btn', =>
             # @span class: "icon icon-x"
             @span 'destroy'
-          @button click: 'close', class: 'btn', =>
-            @span class: "icon icon-x"
-            @span 'close'
-      @div class: 'cli-panel-body', =>
-        @pre class: "terminal", outlet: "cliOutput"
-        @subview 'cmdEditor', new TextEditorView(mini: true, placeholderText: 'input your command here')
+          @span class: 'icon icon-x', click: 'close'
 
   initialize: ->
     @userHome = process.env.HOME or process.env.HOMEPATH or process.env.USERPROFILE
