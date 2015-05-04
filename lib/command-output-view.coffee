@@ -20,10 +20,8 @@ class CommandOutputView extends View
         @subview 'cmdEditor', new TextEditorView(mini: true, placeholderText: 'input your command here')
         @div class: 'buttons', =>
           @button outlet: 'killBtn', click: 'kill', class: 'btn hide', =>
-            # @span class: "icon icon-x"
             @span 'kill'
           @button click: 'destroy', class: 'btn', =>
-            # @span class: "icon icon-x"
             @span 'destroy'
           @span class: 'icon icon-x', click: 'close'
 
@@ -105,6 +103,8 @@ class CommandOutputView extends View
     @scrollToBottom()
     @statusView.setActiveCommandView this
     @cmdEditor.focus()
+    @cliOutput.css('font-family', atom.config.get('editor.fontFamily'))
+    @cliOutput.css('font-size', atom.config.get('editor.fontSize') + 'px')
 
   close: ->
     @lastLocation.activate()
