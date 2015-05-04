@@ -3,10 +3,21 @@
 // See https://github.com/atom/atom-dark-ui/blob/master/stylesheets/ui-variables.less
 // for a full listing of what's available.
 @import "ui-variables";
+@import "syntax-variables";
 
 .cli-status {
   &.panel {
     margin-bottom: 0px;
+  }
+  .cli-panel-input {
+    display: flex;
+    justify-content: flex-end;
+    padding: @component-padding 0;
+    min-height: @component-line-height;
+  }
+  atom-text-editor[mini] {
+    flex: 1;
+    margin-right: @component-padding;
   }
   .cli-panel-body {
     white-space: pre;
@@ -14,23 +25,14 @@
     font-family: monospace;
   }
   .panel-heading {
-    // margin: 1px;
-    padding: 2px;
-    text-align: right;
-    .btn {
-      top: 0px;
-      height: auto;
-    }
-    .hide + .btn:not(:first-child):not(:last-child):not(.dropdown-toggle) {
-      border-top-left-radius: @component-border-radius;
-      border-bottom-left-radius: @component-border-radius;
-    }
-    .icon {
-      display: inline-block;
-      &::before {
-        position: relative;
-        top: 1px;
-      }
+    display: none;
+  }
+  .buttons {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    > * {
+      margin-left: @component-padding;
     }
   }
   .terminal {
@@ -38,11 +40,14 @@
     max-height: 300px;
     overflow-y: scroll;
     bottom: @component-padding;
+    border-radius: 0;
+    color: @syntax-text-color;
+    background: @syntax-background-color;
+    border: 1px solid @tool-panel-border-color;
 
     .file-info {
       width: 140px;
       display: inline-block;
-      // height: 2.5em;
       float: left;
     }
     .stat-program {
