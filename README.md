@@ -24,5 +24,5 @@ Just press ``ctrl-` ``.
 * `command-shift-k` prev terminal
 * `up` and `down` for command history
 
-
-(a fork of guileen/terminal-status)
+---
+A fork of [guileen/terminal-status](https://github.com/guileen/terminal-status).
