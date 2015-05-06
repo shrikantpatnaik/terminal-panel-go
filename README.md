@@ -22,6 +22,7 @@ Just press ``ctrl-` ``.
 * `command-shift-t` new terminal
 * `command-shift-j` next terminal
 * `command-shift-k` prev terminal
+* `command-shift-x` destroy terminal
 * `up` and `down` for command history
 
 ---
