@@ -24,3 +24,7 @@
 '.cli-status':
   'cmd-c': 'native!'
   'ctrl-c': 'native!'
+  
+'.cli-status atom-text-editor':
+  'up': 'core:undo'
+  'down': 'core:redo'
