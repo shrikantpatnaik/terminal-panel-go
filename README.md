@@ -1,43 +1,29 @@
 terminal-panel
 ==============
 
-(a fork of guileen/terminal-status)
-
 ## Usage
-Just press `shift-enter`
+Just press ``ctrl-` ``.
 
 ## Screenshot
 
-Open multiple terminal.
-
 ![A screenshot of terminal-status package](http://guileen.github.io/img/terminal-status/screenshot-1.1.0.gif)
 
-Fancy ls.
-
-![A screenshot of terminal-status package](http://guileen.github.io/img/terminal-status/screenshot-ls.gif)
 
 ## Feature
 
-* multiple terminal
+* multiple terminals
 * colorful status icon
-* kill long live process
-* fancy ls
+* kill long running processes
+* optional fancy ls
 
 ## Hotkeys
 
-* `shift-enter` toggle current terminal
+* ``ctrl-` `` toggle current terminal
 * `command-shift-t` new terminal
 * `command-shift-j` next terminal
 * `command-shift-k` prev terminal
+* `command-shift-x` destroy terminal
+* `up` and `down` for command history
 
-## Changelog
-
-* 1.3.4
-  * use `child_process.exec` instead of `child_process.spawn`, support pipe like command
-
-* 1.3.3
-  * source ~/.profile and /etc/profile for environment variables.
-
-* 1.3.2
-  * fix PATH of /usr/local/bin
-  * support ~
+---
+A fork of [guileen/terminal-status](https://github.com/guileen/terminal-status).
