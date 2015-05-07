@@ -18,6 +18,9 @@ class CliStatusView extends View
       'terminal-panel:next': => @activeNextCommandView()
       'terminal-panel:prev': => @activePrevCommandView()
       'terminal-panel:destroy': => @destroyActiveTerm()
+      
+    atom.commands.add '.cli-status',
+      'core:cancel': => @toggle()
 
     @createCommandView()
     @attach()
