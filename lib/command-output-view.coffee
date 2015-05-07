@@ -19,7 +19,7 @@ class CommandOutputView extends View
         @subview 'cmdEditor', new TextEditorView(mini: true, placeholderText: 'input your command here')
         @div class: 'btn-group', =>
           @button outlet: 'killBtn', click: 'kill', class: 'btn hide', 'kill'
-          @button click: 'destroy', class: 'btn', destroy'
+          @button click: 'destroy', class: 'btn', 'destroy'
           @span class: 'icon icon-x', click: 'close'
 
   initialize: ->
