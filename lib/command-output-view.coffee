@@ -17,7 +17,7 @@ class CommandOutputView extends View
         @pre class: "terminal", outlet: "cliOutput"
       @div class: 'cli-panel-input', =>
         @subview 'cmdEditor', new TextEditorView(mini: true, placeholderText: 'input your command here')
-        @div class: 'btn-group buttons', =>
+        @div class: 'btn-group', =>
           @button outlet: 'killBtn', click: 'kill', class: 'btn hide', =>
             @span 'kill'
           @button click: 'destroy', class: 'btn', =>
