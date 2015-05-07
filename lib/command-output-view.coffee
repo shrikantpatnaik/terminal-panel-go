@@ -55,10 +55,6 @@ class CommandOutputView extends View
         return @cmdEditor.setText ''
       @spawn inputCmd, cmd, args
 
-  adjustWindowHeight: ->
-    maxHeight = atom.config.get('terminal-panel.WindowHeight')
-    @cliOutput.css("max-height", "#{maxHeight}px")
-
   showCmd: ->
     @cmdEditor.show()
     @cmdEditor.getModel().selectAll()
@@ -104,6 +100,12 @@ class CommandOutputView extends View
     @cmdEditor.focus()
     @cliOutput.css('font-family', atom.config.get('editor.fontFamily'))
     @cliOutput.css('font-size', atom.config.get('editor.fontSize') + 'px')
+    console.log atom.config.get('terminal-panel.windowHeight')
+    if atom.config.get('terminal-panel.windowHeight') > 80
+      maxHeight = 80
+    else
+      maxHeight = atom.config.get('terminal-panel.windowHeight')
+    @cliOutput.css('max-height', maxHeight +' vh')
 
   close: ->
     @lastLocation.activate()

@@ -20,9 +20,9 @@ module.exports =
   #   cliStatusViewState: @cliStatusView.serialize()
 
   config:
-    'WindowHeight':
+    'windowHeight':
       type: 'integer'
-      default: 300
+      default: 30
     'clearCommandInput':
       type: 'boolean'
       default: true
