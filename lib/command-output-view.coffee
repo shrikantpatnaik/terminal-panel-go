@@ -101,8 +101,7 @@ class CommandOutputView extends View
     @cmdEditor.focus()
     @cliOutput.css('font-family', atom.config.get('editor.fontFamily'))
     @cliOutput.css('font-size', atom.config.get('editor.fontSize') + 'px')
-    maxHeight = atom.config.get('terminal-panel.windowHeight')
-    @cliOutput.css('max-height', maxHeight + 'vh')
+    @cliOutput.css('max-height', atom.config.get('terminal-panel.windowHeight') + 'vh')
 
   close: ->
     @lastLocation.activate()
