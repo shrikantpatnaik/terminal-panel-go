@@ -23,6 +23,8 @@ module.exports =
     'windowHeight':
       type: 'integer'
       default: 30
+      minimum: 0
+      maximum: 80
     'clearCommandInput':
       type: 'boolean'
       default: true
