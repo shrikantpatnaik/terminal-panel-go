@@ -102,10 +102,10 @@ class CommandOutputView extends View
     @cliOutput.css('font-size', atom.config.get('editor.fontSize') + 'px')
     console.log atom.config.get('terminal-panel.windowHeight')
     if atom.config.get('terminal-panel.windowHeight') > 80
-      maxHeight = 80
+      maxHeight = 80 + 'vh'
     else
-      maxHeight = atom.config.get('terminal-panel.windowHeight')
-    @cliOutput.css('max-height', maxHeight +' vh')
+      maxHeight = atom.config.get('terminal-panel.windowHeight') + 'vh'
+    @cliOutput.css('max-height', maxHeight)
 
   close: ->
     @lastLocation.activate()
