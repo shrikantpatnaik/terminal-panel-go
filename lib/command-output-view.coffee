@@ -55,12 +55,9 @@ class CommandOutputView extends View
         return @cmdEditor.setText ''
       @spawn inputCmd, cmd, args
 
-  adjustWindowHeight: ->
-    maxHeight = atom.config.get('terminal-panel.WindowHeight')
-    @cliOutput.css("max-height", "#{maxHeight}px")
-
   showCmd: ->
     @cmdEditor.show()
+    @cmdEditor.css('visibility', '')
     @cmdEditor.getModel().selectAll()
     @cmdEditor.setText('') if atom.config.get('terminal-panel.clearCommandInput')
     @cmdEditor.focus()
@@ -104,6 +101,12 @@ class CommandOutputView extends View
     @cmdEditor.focus()
     @cliOutput.css('font-family', atom.config.get('editor.fontFamily'))
     @cliOutput.css('font-size', atom.config.get('editor.fontSize') + 'px')
+    console.log atom.config.get('terminal-panel.windowHeight')
+    if atom.config.get('terminal-panel.windowHeight') > 80
+      maxHeight = 80 + 'vh'
+    else
+      maxHeight = atom.config.get('terminal-panel.windowHeight') + 'vh'
+    @cliOutput.css('max-height', maxHeight)
 
   close: ->
     @lastLocation.activate()
@@ -215,7 +218,7 @@ class CommandOutputView extends View
     @cwd or projectDir or @userHome
 
   spawn: (inputCmd, cmd, args) ->
-    @cmdEditor.hide()
+    @cmdEditor.css('visibility', 'hidden')
     htmlStream = ansihtml()
     htmlStream.on 'data', (data) =>
       @cliOutput.append data
