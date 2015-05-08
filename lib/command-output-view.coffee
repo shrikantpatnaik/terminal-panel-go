@@ -57,6 +57,7 @@ class CommandOutputView extends View
 
   showCmd: ->
     @cmdEditor.show()
+    @cmdEditor.css('visibility', '')
     @cmdEditor.getModel().selectAll()
     @cmdEditor.setText('') if atom.config.get('terminal-panel.clearCommandInput')
     @cmdEditor.focus()
@@ -217,7 +218,7 @@ class CommandOutputView extends View
     @cwd or projectDir or @userHome
 
   spawn: (inputCmd, cmd, args) ->
-    @cmdEditor.hide()
+    @cmdEditor.css('visibility', 'hidden')
     htmlStream = ansihtml()
     htmlStream.on 'data', (data) =>
       @cliOutput.append data
