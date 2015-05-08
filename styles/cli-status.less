@@ -32,8 +32,21 @@
     display: flex;
     align-items: center;
     justify-content: flex-end;
+
     > * {
       margin-left: @component-padding;
+    }
+
+    .btn:first-of-type:not(:last-of-type) {
+      border-radius: @component-border-radius 0 0 @component-border-radius;
+    }
+
+    .btn:last-of-type:not(:first-of-type) {
+      border-radius: 0 @component-border-radius @component-border-radius 0;
+    }
+
+    .hide + .btn:last-of-type {
+      border-radius: @component-border-radius
     }
   }
   .terminal {
