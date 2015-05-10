@@ -34,26 +34,27 @@ class CommandOutputView extends View
     atom.commands.add 'atom-workspace',
       "cli-status:toggle-output": => @toggle()
 
-    @on "core:confirm", =>
-      inputCmd = @cmdEditor.getModel().getText()
-      @cliOutput.append "\n$>#{inputCmd}\n"
-      @scrollToBottom()
-      args = []
-      # support 'a b c' and "foo bar"
-      inputCmd.replace /("[^"]*"|'[^']*'|[^\s'"]+)/g, (s) =>
-        if s[0] != '"' and s[0] != "'"
-          s = s.replace /~/g, @userHome
-        args.push s
-      cmd = args.shift()
-      if cmd == 'cd'
-        return @cd args
-      if cmd == 'ls' and atom.config.get('terminal-panel.overrideLs')
-        return @ls args
-      if cmd == 'clear'
-        @cliOutput.empty()
-        @message '\n'
-        return @cmdEditor.setText ''
-      @spawn inputCmd, cmd, args
+    atom.commands.add @cmdEditor.element,
+      'core:confirm': =>
+        inputCmd = @cmdEditor.getModel().getText()
+        @cliOutput.append "\n$>#{inputCmd}\n"
+        @scrollToBottom()
+        args = []
+        # support 'a b c' and "foo bar"
+        inputCmd.replace /("[^"]*"|'[^']*'|[^\s'"]+)/g, (s) =>
+          if s[0] != '"' and s[0] != "'"
+            s = s.replace /~/g, @userHome
+          args.push s
+        cmd = args.shift()
+        if cmd == 'cd'
+          return @cd args
+        if cmd == 'ls' and atom.config.get('terminal-panel.overrideLs')
+          return @ls args
+        if cmd == 'clear'
+          @cliOutput.empty()
+          @message '\n'
+          return @cmdEditor.setText ''
+        @spawn inputCmd, cmd, args
 
   showCmd: ->
     @cmdEditor.show()
