@@ -150,7 +150,6 @@ class CommandOutputView extends View
     filepath = parent + '/' + filename
     stat = fs.lstatSync filepath
     if stat.isSymbolicLink()
-      # classes.push 'icon-file-symlink-file'
       classes.push 'stat-link'
       stat = fs.statSync filepath
     if stat.isFile()
@@ -168,9 +167,6 @@ class CommandOutputView extends View
       classes.push 'stat-sock'
     if filename[0] == '.'
       classes.push 'status-ignored'
-    # if statusName = @getGitStatusName filepath
-    #   classes.push statusName
-    # other stat info
     ["<span class=\"#{classes.join ' '}\">#{filename}</span>", stat, filename]
 
   getGitStatusName: (path, gitRoot, repo) ->
@@ -220,7 +216,6 @@ class CommandOutputView extends View
       @cliOutput.append data
       @scrollToBottom()
     try
-      # @program = spawn cmd, args, stdio: 'pipe', env: process.env, cwd: @getCwd()
       @program = exec inputCmd, stdio: 'pipe', env: process.env, cwd: @getCwd()
       @program.stdout.pipe htmlStream
       @program.stderr.pipe htmlStream
@@ -232,7 +227,6 @@ class CommandOutputView extends View
         console.log 'exit', code if atom.config.get('terminal-panel.logConsole')
         @killBtn.addClass 'hide'
         removeClass @statusIcon, 'status-running'
-        # removeClass @statusIcon, 'status-error'
         @program = null
         addClass @statusIcon, code == 0 and 'status-success' or 'status-error'
         @showCmd()
