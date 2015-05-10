@@ -34,26 +34,27 @@ class CommandOutputView extends View
     atom.commands.add 'atom-workspace',
       "cli-status:toggle-output": => @toggle()
 
-    @on "core:confirm", =>
-      inputCmd = @cmdEditor.getModel().getText()
-      @cliOutput.append "\n$>#{inputCmd}\n"
-      @scrollToBottom()
-      args = []
-      # support 'a b c' and "foo bar"
-      inputCmd.replace /("[^"]*"|'[^']*'|[^\s'"]+)/g, (s) =>
-        if s[0] != '"' and s[0] != "'"
-          s = s.replace /~/g, @userHome
-        args.push s
-      cmd = args.shift()
-      if cmd == 'cd'
-        return @cd args
-      if cmd == 'ls' and atom.config.get('terminal-panel.overrideLs')
-        return @ls args
-      if cmd == 'clear'
-        @cliOutput.empty()
-        @message '\n'
-        return @cmdEditor.setText ''
-      @spawn inputCmd, cmd, args
+    atom.commands.add @cmdEditor.element,
+      'core:confirm': =>
+        inputCmd = @cmdEditor.getModel().getText()
+        @cliOutput.append "\n$>#{inputCmd}\n"
+        @scrollToBottom()
+        args = []
+        # support 'a b c' and "foo bar"
+        inputCmd.replace /("[^"]*"|'[^']*'|[^\s'"]+)/g, (s) =>
+          if s[0] != '"' and s[0] != "'"
+            s = s.replace /~/g, @userHome
+          args.push s
+        cmd = args.shift()
+        if cmd == 'cd'
+          return @cd args
+        if cmd == 'ls' and atom.config.get('terminal-panel.overrideLs')
+          return @ls args
+        if cmd == 'clear'
+          @cliOutput.empty()
+          @message '\n'
+          return @cmdEditor.setText ''
+        @spawn inputCmd, cmd, args
 
   showCmd: ->
     @cmdEditor.show()
@@ -149,7 +150,6 @@ class CommandOutputView extends View
     filepath = parent + '/' + filename
     stat = fs.lstatSync filepath
     if stat.isSymbolicLink()
-      # classes.push 'icon-file-symlink-file'
       classes.push 'stat-link'
       stat = fs.statSync filepath
     if stat.isFile()
@@ -167,9 +167,6 @@ class CommandOutputView extends View
       classes.push 'stat-sock'
     if filename[0] == '.'
       classes.push 'status-ignored'
-    # if statusName = @getGitStatusName filepath
-    #   classes.push statusName
-    # other stat info
     ["<span class=\"#{classes.join ' '}\">#{filename}</span>", stat, filename]
 
   getGitStatusName: (path, gitRoot, repo) ->
@@ -219,7 +216,6 @@ class CommandOutputView extends View
       @cliOutput.append data
       @scrollToBottom()
     try
-      # @program = spawn cmd, args, stdio: 'pipe', env: process.env, cwd: @getCwd()
       @program = exec inputCmd, stdio: 'pipe', env: process.env, cwd: @getCwd()
       @program.stdout.pipe htmlStream
       @program.stderr.pipe htmlStream
@@ -231,7 +227,6 @@ class CommandOutputView extends View
         console.log 'exit', code if atom.config.get('terminal-panel.logConsole')
         @killBtn.addClass 'hide'
         removeClass @statusIcon, 'status-running'
-        # removeClass @statusIcon, 'status-error'
         @program = null
         addClass @statusIcon, code == 0 and 'status-success' or 'status-error'
         @showCmd()
