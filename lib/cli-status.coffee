@@ -10,14 +10,11 @@ module.exports =
     if atom.views.getView(atom.workspace).statusBar
       createStatusEntry()
     else
-      atom.packages.once 'activated', ->
+      atom.packages.onDidActivateInitialPackages ->
         createStatusEntry()
 
   deactivate: ->
     @cliStatusView.destroy()
-
-  # serialize: ->
-  #   cliStatusViewState: @cliStatusView.serialize()
 
   config:
     'windowHeight':
