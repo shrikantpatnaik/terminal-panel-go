@@ -1,6 +1,4 @@
 {View} = require 'atom-space-pen-views'
-domify = require 'domify'
-CommandOutputView = require './command-output-view'
 
 module.exports =
 class CliStatusView extends View
@@ -18,14 +16,15 @@ class CliStatusView extends View
       'terminal-panel:next': => @activeNextCommandView()
       'terminal-panel:prev': => @activePrevCommandView()
       'terminal-panel:destroy': => @destroyActiveTerm()
-      
+
     atom.commands.add '.cli-status',
       'core:cancel': => @toggle()
 
-    @createCommandView()
     @attach()
 
   createCommandView: ->
+    domify = require 'domify'
+    CommandOutputView = require './command-output-view'
     termStatus = domify '<span class="cli-status icon icon-terminal"></span>'
     commandOutputView = new CommandOutputView
     commandOutputView.statusIcon = termStatus
