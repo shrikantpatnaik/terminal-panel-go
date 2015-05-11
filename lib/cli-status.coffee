@@ -1,9 +1,8 @@
-
 module.exports =
   cliStatusView: null
 
   activate: (state) ->
-    atom.packages.onDidActivateInitialPackages ->
+    atom.packages.onDidActivateInitialPackages =>
       CliStatusView = require './cli-status-view'
       createStatusEntry = =>
         @cliStatusView = new CliStatusView(state.cliStatusViewState)
