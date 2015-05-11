@@ -1,17 +1,13 @@
-CliStatusView = require './cli-status-view'
 
 module.exports =
   cliStatusView: null
 
   activate: (state) ->
-    createStatusEntry = =>
-      @cliStatusView = new CliStatusView(state.cliStatusViewState)
-
-    if atom.views.getView(atom.workspace).statusBar
+    atom.packages.onDidActivateInitialPackages ->
+      CliStatusView = require './cli-status-view'
+      createStatusEntry = =>
+        @cliStatusView = new CliStatusView(state.cliStatusViewState)
       createStatusEntry()
-    else
-      atom.packages.onDidActivateInitialPackages ->
-        createStatusEntry()
 
   deactivate: ->
     @cliStatusView.destroy()
