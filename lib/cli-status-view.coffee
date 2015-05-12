@@ -1,3 +1,4 @@
+{CompositeDisposable} = require 'atom'
 {View} = require 'atom-space-pen-views'
 
 module.exports =
@@ -5,10 +6,12 @@ class CliStatusView extends View
   @content: ->
     @div class: 'cli-status inline-block', =>
       @span outlet: 'termStatusContainer', =>
-        @span click: 'newTermClick', class: "cli-status icon icon-plus"
+        @span click: 'newTermClick', outlet: 'termStatusAdd', class: "cli-status icon icon-plus"
 
   commandViews: []
   activeIndex: 0
+  toolTipDisposable: null
+
   initialize: (serializeState) ->
     atom.commands.add 'atom-workspace',
       'terminal-panel:new': => @newTermClick()
@@ -21,6 +24,8 @@ class CliStatusView extends View
       'core:cancel': => @toggle()
 
     @attach()
+    @toolTipDisposable?.dispose()
+    @toolTipDisposable = atom.tooltips.add @termStatusAdd, title: "Add a terminal panel"
 
   createCommandView: ->
     domify = require 'domify'
