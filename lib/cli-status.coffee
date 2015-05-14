@@ -27,3 +27,6 @@ module.exports =
       title: 'Override ls'
       type: 'boolean'
       default: true
+    'shell':
+      type: 'string'
+      default: process.env.SHELL # TODO: add some windows variant

@@ -25,7 +25,8 @@ class CommandOutputView extends View
   initialize: ->
     @userHome = process.env.HOME or process.env.HOMEPATH or process.env.USERPROFILE
     cmd = 'test -e /etc/profile && source /etc/profile;test -e ~/.profile && source ~/.profile; node -pe "JSON.stringify(process.env)"'
-    exec cmd, (code, stdout, stderr) ->
+    shell = atom.config.get 'terminal-panel.shell'
+    exec cmd, {shell}, (code, stdout, stderr) ->
       try
         process.env = JSON.parse(stdout)
       catch e
@@ -214,8 +215,9 @@ class CommandOutputView extends View
     htmlStream.on 'data', (data) =>
       @cliOutput.append data
       @scrollToBottom()
+    shell = atom.config.get 'terminal-panel.shell'
     try
-      @program = exec inputCmd, stdio: 'pipe', env: process.env, cwd: @getCwd()
+      @program = exec inputCmd, stdio: 'pipe', env: process.env, cwd: @getCwd(), shell: shell
       @program.stdout.pipe htmlStream
       @program.stderr.pipe htmlStream
       removeClass @statusIcon, 'status-success'
