@@ -91,7 +91,7 @@ class CommandOutputView extends View
 
   open: ->
     @lastLocation = atom.workspace.getActivePane()
-    atom.workspace.addBottomPanel(item: this) unless @hasParent()
+    @panel = atom.workspace.addBottomPanel(item: this) unless @hasParent()
     if lastOpenedView and lastOpenedView != this
       lastOpenedView.close()
     lastOpenedView = this
@@ -105,6 +105,7 @@ class CommandOutputView extends View
   close: ->
     @lastLocation.activate()
     @detach()
+    @panel.destroy()
     lastOpenedView = null
 
   toggle: ->
