@@ -30,6 +30,6 @@ module.exports =
     'shell':
       type: 'string'
       default: if process.platform is 'win32'
-        'cmd.exe'
-      else
-        process.env.SHELL ? '/bin/bash'
+          'cmd.exe'
+        else
+          process.env.SHELL ? '/bin/bash'
