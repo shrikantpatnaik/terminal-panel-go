@@ -6,7 +6,7 @@ Just press ``ctrl-` ``.
 
 ## Screenshot
 
-![A screenshot of terminal-status package](http://guileen.github.io/img/terminal-status/screenshot-1.1.0.gif)
+![A screenshot of terminal-status package](https://raw.githubusercontent.com/thedaniel/terminal-panel/master/terminal-demo.gif)
 
 ## Feature
 
