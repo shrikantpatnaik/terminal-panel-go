@@ -29,4 +29,7 @@ module.exports =
       default: true
     'shell':
       type: 'string'
-      default: process.env.SHELL # TODO: add some windows variant
+      default: if process.platform is 'win32'
+        'cmd.exe'
+      else
+        process.env.SHELL ? '/bin/bash'
