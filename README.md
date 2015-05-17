@@ -1,6 +1,18 @@
 terminal-panel
 ==============
 
+Terminal-panel executes your commands and displays the output. This means you can do all sorts of useful stuff right inside Atom, like:
+* run build scripts
+* start servers
+* npm/apm (install, publish, etc)
+* grunt
+* etc. etc.
+
+Some things it can't do (yet):
+* The "terminal" isn't interactive so it can't do tab-autocomplete
+* Or ask for a commit message
+* ... stuff like that.
+
 ## Usage
 Just press ``ctrl-` ``.
 
