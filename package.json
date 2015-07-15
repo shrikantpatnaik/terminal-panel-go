@@ -1,9 +1,9 @@
 {
-  "name": "terminal-panel",
+  "name": "terminal-panel-go",
   "main": "./lib/cli-status",
   "version": "1.14.1",
-  "description": "A terminal interface and status icon. Fork of terminal-status",
-  "repository": "https://github.com/thedaniel/terminal-panel",
+  "description": "A terminal interface that includes the gopath and status icon. Fork of terminal-panel",
+  "repository": "https://github.com/shrikantpatnaik/terminal-panel",
   "license": "MIT",
   "engines": {
     "atom": ">0.135.0"

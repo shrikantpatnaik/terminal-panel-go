@@ -1,5 +1,6 @@
-terminal-panel
+terminal-panel-go
 ==============
+This is a fork of [terminal-panel](https://github.com/thedaniel/terminal-panel), it just adds the GOPATH from the go-lus package to every command
 
 Terminal-panel executes your commands and displays the output. This means you can do all sorts of useful stuff right inside Atom, like:
 * run build scripts

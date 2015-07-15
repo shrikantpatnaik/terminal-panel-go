@@ -210,6 +210,8 @@ class CommandOutputView extends View
     @cwd or projectDir or @userHome
 
   spawn: (inputCmd, cmd, args) ->
+    if atom.config.get('terminal-panel.useGoPath')
+      inputCmd = "GOPATH=#{atom.config.get('go-plus.goPath')} #{inputCmd}"
     @cmdEditor.css('visibility', 'hidden')
     htmlStream = ansihtml()
     htmlStream.on 'data', (data) =>
